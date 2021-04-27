@@ -1,0 +1,172 @@
+{
+  "name": "zed_camera",
+  "modules": [
+    "perception",
+    "zed",
+    "sight"
+  ],
+  "config": {
+    "zed": {
+      "zed_camera": {
+        "camera_fps": 60,
+        "resolution": "672x376",
+        "enable_imu": true
+      },
+      "zed_imu_reader": {
+        "tick_period": "300Hz"
+      }
+    },
+    "websight": {
+      "WebsightServer": {
+        "port": 3000,
+        "ui_config": {
+          "windows": {
+            "imu - CorrectedAngularVelocity": {
+              "renderer": "plot",
+              "dims": {
+                "width": 600,
+                "height": 600
+              },
+              "channels": [
+                {
+                  "name": "zed_camera/zed/imu_corrector/CorrectedAngularVelocity.x"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/CorrectedAngularVelocity.y"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/CorrectedAngularVelocity.z"
+                }
+              ]
+            },
+            "imu - CorrectedLinearAcceleration": {
+              "renderer": "plot",
+              "dims": {
+                "width": 600,
+                "height": 600
+              },
+              "channels": [
+                {
+                  "name": "zed_camera/zed/imu_corrector/CorrectedLinearAcceleration.x"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/CorrectedLinearAcceleration.y"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/CorrectedLinearAcceleration.z"
+                }
+              ]
+            },
+            "imu - RawAngularVelocity": {
+              "renderer": "plot",
+              "dims": {
+                "width": 600,
+                "height": 600
+              },
+              "channels": [
+                {
+                  "name": "zed_camera/zed/imu_corrector/RawAngularVelocity.x"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/RawAngularVelocity.y"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/RawAngularVelocity.z"
+                }
+              ]
+            },
+            "imu - RawLinearAcceleration": {
+              "renderer": "plot",
+              "dims": {
+                "width": 600,
+                "height": 600
+              },
+              "channels": [
+                {
+                  "name": "zed_camera/zed/imu_corrector/RawLinearAcceleration.x"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/RawLinearAcceleration.y"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/RawLinearAcceleration.z"
+                }
+              ]
+            },
+            "imu - BiasLinearAcceleration": {
+              "renderer": "plot",
+              "dims": {
+                "width": 600,
+                "height": 600
+              },
+              "channels": [
+                {
+                  "name": "zed_camera/zed/imu_corrector/BiasLinearAcceleration.x"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/BiasLinearAcceleration.y"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/BiasLinearAcceleration.z"
+                }
+              ]
+            },
+            "imu - BiasAngularVelocity": {
+              "renderer": "plot",
+              "dims": {
+                "width": 600,
+                "height": 600
+              },
+              "channels": [
+                {
+                  "name": "zed_camera/zed/imu_corrector/BiasAngularVelocity.x"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/BiasAngularVelocity.y"
+                },
+                {
+                  "name": "zed_camera/zed/imu_corrector/BiasAngularVelocity.z"
+                }
+              ]
+            },
+            "Right Camera": {
+              "renderer": "2d",
+              "channels": [
+                {
+                  "name": "zed_camera/zed/zed_camera/right_rgb_thumbnail"
+                }
+              ]
+            },
+            "Left Camera": {
+              "renderer": "2d",
+              "channels": [
+                {
+                  "name": "zed_camera/zed/zed_camera/left_rgb_thumbnail"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "graph": {
+    "nodes": [
+      {
+        "name": "zed",
+        "components": [
+          {
+            "name": "message_ledger",
+            "type": "isaac::alice::MessageLedger"
+          },
+          {
+            "name": "zed_camera",
+            "type": "isaac::ZedCamera"
+          }
+        ]
+      }
+    ],
+    "edges": [
+    ]
+  }
+}
