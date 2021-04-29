@@ -8,14 +8,16 @@ Isaac SDK documentation: https://docs.nvidia.com/isaac/isaac/doc/index.html
 
 ## Installation
 
+Download Isaac SDK here: https://developer.nvidia.com/isaac/downloads
+
+Extract the file (`isaac-sdk-20201201-427971df2.tar.xz`)'s content into `~/isaac` directory. After extraction, the `~/isaac/sdk` directory should exist.
+
 ```sh
 git clone https://github.com/j3soon/isaac-sdk-extended.git
 cd isaac-sdk-extended
 ```
 
-Download Isaac SDK here: https://developer.nvidia.com/isaac/downloads
-
-Extract the file (`isaac-sdk-20201201-427971df2.tar.xz`)'s content into this git repo.
+Copy all files in this repo into the `~/isaac` directory (Overwrite existing files). After copying, the `~/isaac/ros` directory should exist.
 
 ## Examples
 
