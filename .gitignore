@@ -1,0 +1,11 @@
+/*
+!.gitignore
+!README.md
+
+!sdk
+sdk/*
+!sdk/apps
+sdk/apps/*
+!sdk/apps/samples
+sdk/apps/samples/*
+!sdk/apps/samples/zed_camera_low_res
