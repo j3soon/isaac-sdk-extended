@@ -1,0 +1,84 @@
+{
+  "name": "zed_camera_to_ros",
+  "modules": [
+    "zed",
+    "sight"
+  ],
+  "config": {
+    "zed": {
+      "zed_camera": {
+        "camera_fps": 60,
+        "resolution": "672x376",
+        "enable_imu": true
+      }
+    },
+    "websight": {
+      "WebsightServer": {
+        "port": 3000,
+        "ui_config": {
+          "windows": {
+            "Right Camera": {
+              "renderer": "2d",
+              "channels": [
+                {
+                  "name": "zed_camera_to_ros/zed/zed_camera/right_rgb_thumbnail"
+                }
+              ]
+            },
+            "Left Camera": {
+              "renderer": "2d",
+              "channels": [
+                {
+                  "name": "zed_camera_to_ros/zed/zed_camera/left_rgb_thumbnail"
+                }
+              ]
+            },
+            "Left Camera (High Resolution)": {
+              "renderer": "2d",
+              "channels": [
+                {
+                  "name": "zed_camera_to_ros/zed/zed_camera/left_rgb"
+                }
+              ]
+            },
+            "Image": {
+              "renderer": "2d",
+              "channels": [
+                {
+                  "name": "zed_camera_to_ros/zed_camera_to_ros.viewer/ImageViewer/image"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "graph": {
+    "nodes": [
+      {
+        "name": "zed",
+        "components": [
+          {
+            "name": "message_ledger",
+            "type": "isaac::alice::MessageLedger"
+          },
+          {
+            "name": "zed_camera",
+            "type": "isaac::ZedCamera"
+          }
+        ]
+      },
+      {
+        "name": "zed_camera_to_ros",
+        "subgraph": "packages/ros_bridge/apps/zed_camera_to_ros.subgraph.json"
+      }
+    ],
+    "edges": [
+      {
+        "source": "zed/zed_camera/left_camera_rgb",
+        "target": "zed_camera_to_ros.subgraph/interface/image"
+      }
+    ]
+  }
+}

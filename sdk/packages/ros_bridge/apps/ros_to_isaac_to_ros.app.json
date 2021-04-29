@@ -1,0 +1,42 @@
+{
+  "name": "ros_to_isaac_to_ros",
+  "modules": [
+    "sight"
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "name": "ros_to_isaac_to_ros",
+        "subgraph": "packages/ros_bridge/apps/ros_to_isaac_to_ros.subgraph.json"
+      }
+    ],
+    "edges": [
+    ]
+  },
+  "config": {
+    "ros_to_isaac_to_ros.ros_converters": {
+      "RosToImage": {
+        "channel_name": "/ros/color/image_raw"
+      },
+      "ImageToRos": {
+        "channel_name": "/isaac/color/image_raw"
+      }
+    },
+    "websight": {
+      "WebsightServer": {
+        "port": 3000,
+        "ui_config": {
+          "windows": {
+            "image": {
+              "renderer": "2d",
+              "dims": { "width": 640, "height": 480 },
+              "channels": [
+                { "name": "ros_to_isaac_to_ros/ros_to_isaac_to_ros.viewer/ImageViewer/image" }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

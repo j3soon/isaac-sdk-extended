@@ -9,3 +9,16 @@ sdk/apps/*
 !sdk/apps/samples
 sdk/apps/samples/*
 !sdk/apps/samples/zed_camera_low_res
+
+!sdk/packages
+sdk/packages/*
+!sdk/packages/ros_bridge
+sdk/packages/ros_bridge/*
+!sdk/packages/ros_bridge/apps
+sdk/packages/ros_bridge/apps/*
+!sdk/packages/ros_bridge/apps/BUILD
+!sdk/packages/ros_bridge/apps/zed_camera_to_ros*
+!sdk/packages/ros_bridge/apps/ros_to_isaac_to_ros*
+!sdk/packages/ros_bridge/ros_bridge.png
+
+!ros

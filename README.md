@@ -73,6 +73,10 @@ The command will launch an diagnostic window. If all test has passed, you can re
 
 ### ZED Camera Low Resolution (NEW)
 
+File location: (JSON only, No C++/Python)
+
+- [sdk/apps/samples/zed_camera_low_res](https://github.com/j3soon/isaac-sdk-extended/tree/master/sdk/apps/samples/zed_camera_low_res)
+
 > - Tested with ZED SDK 3.2.2, on PC with ZED1 (Camera Firmware 1523, IMU Firmware N/A).
 > - Tested with ZED SDK 3.2.2, on PC with ZED2 (Camera Firmware 1523, IMU Firmware 776).
 > - Tested with ZED SDK 3.2.2, on Jetson Xavier with ZED1 (Camera Firmware 1523, IMU Firmware N/A).
@@ -105,6 +109,44 @@ bazel run //apps/samples/zed_camera_low_res
 Open Isaac Sight (http://localhost:3000/) to view the results.
 
 If you can see the camera image, but not in real-time, please verify that the `zed_camera` checkbox on the left side of Isaac Sight is checked.
+
+### ISAAC ROS Bridge Sample (NEW)
+
+File location: (JSON only for Isaac, Python for ROS)
+
+> - Tested on PC
+
+- [ros/isaac_ros_bridge_sample](https://github.com/j3soon/isaac-sdk-extended/tree/master/ros/isaac_ros_bridge_sample)
+- [sdk/packages/ros_bridge/apps/ros_to_isaac_to_ros.app.json](https://github.com/j3soon/isaac-sdk-extended/tree/master/sdk/packages/ros_bridge/apps/ros_to_isaac_to_ros.app.json)
+- [sdk/packages/ros_bridge/apps/ros_to_isaac_to_ros.subgraph.json](https://github.com/j3soon/isaac-sdk-extended/tree/master/sdk/packages/ros_bridge/apps/ros_to_isaac_to_ros.subgraph.json)
+
+This is a ROS bridge application that does not require any camera.
+
+For running the ROS package, please refer to [the README file](https://github.com/j3soon/isaac-sdk-extended/tree/master/ros/isaac_ros_bridge_sample/README.md)
+
+- A ROS node publisher sends an blue image (topic: `ros/color/image_raw`) that becomes darker/lighter through time.
+- A ROS node subscriber directly receive that blue image (topic: `ros/color/image_raw`) through roscore and show it.
+- This Isaac app receives (subscribe) the blue image, show it on Isaac Sight, and transmits (publish) it back to ROS (topic: `isaac/color/image_raw`).
+- A ROS node subscriber receives that image (topic: `isaac/color/image_raw`) through isaac & roscore and show it.
+
+When ran correctly, there will be 3 slowly blinking blue image showing on Isaac Sight, ros image viewer, isaac image viewer, simultaneously.
+
+### ISAAC ROS Bridge for Zed Camera (NEW)
+
+File location: (JSON only, no C++/Python)
+
+> - Tested on PC
+
+- [sdk/packages/ros_bridge/apps/zed_camera_to_ros.app.json](https://github.com/j3soon/isaac-sdk-extended/tree/master/sdk/packages/ros_bridge/apps/zed_camera_to_ros.app.json)
+- [sdk/packages/ros_bridge/apps/zed_camera_to_ros.subgraph.json](https://github.com/j3soon/isaac-sdk-extended/tree/master/sdk/packages/ros_bridge/apps/zed_camera_to_ros.subgraph.json)
+
+This Isaac application reads the image from zed camera, show it on Isaac Sight, and send it to ROS (roscore), with topic `/rgb`.
+
+### ROS Bridge (IN SDK)
+
+The following is a brief graph of how Isaac communicates with ROS. Please note that Isaac has 2 independent channels for Isaac Sight and Other Isaac Apps respectively. Isaac Sight can receive data from C++ `show` and JSON `ImageViewer`. Other Isaac Apps can receive data through C++ `ISAAC_PROTO_TX`/`ISAAC_PROTO_RX` and JSON `edges`.
+
+![ros_bridge](sdk/packages/ros_bridge/ros_bridge.png)
 
 # ISAAC SDK
 
