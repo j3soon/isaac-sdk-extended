@@ -1,5 +1,7 @@
 # ISAAC SDK Extended
 
+> This repo will not be further updated, please refer to <https://github.com/j3soon/isaac-extended> instead.
+
 Provide some Isaac SDK examples and notes not included in the toolkit.
 
 Isaac SDK documentation: https://docs.nvidia.com/isaac/isaac/doc/index.html
